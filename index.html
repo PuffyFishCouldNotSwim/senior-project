@@ -1,190 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <!-- 🌐 BASICS -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive deep‑dive into Donald Trump’s tariff policies (2016‑2025) – timeline, data visualisations, glossary & resources." />
-  <title>Trump’s Tariff Policies (2016‑2025)</title>
-
-  <!-- 🎨 IN‑PAGE CSS  -->
+  <title>Trump’s Tariff Policies (2016–2025)</title>
+  <meta name="description" content="Interactive timeline and analysis of Trump-era tariffs (2016–2025)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ---------- COLOURS & FONTS ---------- */
-    :root{
-      --bg:#f0f9ff;                 /* sky‑50  */
-      --bg‑dark:#0f172a;            /* slate‑900 */
-      --text:#0f172a;              /* slate‑900 */
-      --text‑light:#cbd5e1;        /* slate‑300 */
-      --header:#082f49;            /* sky‑900 */
-      --accent:#0ea5e9;            /* sky‑500 */
-      --accent‑light:#bae6fd;      /* sky‑200 */
-      --accent‑dark:#0284c7;       /* sky‑600 */
-      --callout:#ecfeff;           /* sky‑50 */
-      --card:#ffffff;
-      --shadow:0 2px 6px rgba(0,0,0,.08);
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0f172a;
-        --text:#f1f5f9;
-        --header:#f1f5f9;
-        --card:#1e293b;
-        --callout:#164e63;
-        --shadow:0 2px 6px rgba(0,0,0,.4);
-      }
-    }
-
-    /* ---------- RESET ---------- */
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.7;background:var(--bg);color:var(--text);}
-    img{max-width:100%;display:block;height:auto}
-
-    /* ---------- TYPOGRAPHY ---------- */
-    h1,h2,h3,h4{color:var(--header);line-height:1.3;font-weight:700}
-    h1{font-size:2.5rem}
-    h2{font-size:1.8rem;margin-top:2.5rem}
-    h3{font-size:1.4rem;margin-top:2rem}
-    h4{font-size:1.2rem;margin-top:1.25rem}
-    p{margin:0 0 1rem}
-    small{font-size:.85rem;color:var(--text‑light)}
-
-    /* ---------- LAYOUT ---------- */
-    header{background:linear-gradient(120deg,var(--accent) 0%,var(--accent‑dark) 100%);color:#fff;text-align:center;padding:3rem 1rem 2.5rem;box-shadow:var(--shadow)}
-    header h1{margin-bottom:.6rem}
-    header p{font-weight:300;max-width:680px;margin:0 auto}
-
-    #navWrap{position:sticky;top:0;z-index:20;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,.05)}
-    nav{max-width:1000px;margin:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:.75rem}
-    nav a{color:var(--accent‑dark);text-decoration:none;font-weight:600;padding:.3rem .65rem;border-radius:.3rem;transition:background .2s}
-    nav a:hover{background:var(--accent‑light)}
-
-    main{max-width:1000px;margin:auto;padding:1.5rem}
-
-    /* ---------- COMPONENTS ---------- */
-    .timeline-container iframe{width:100%;height:650px;border:none}
-
-    .callout{background:var(--callout);border-left:4px solid var(--accent‑dark);padding:1rem 1.2rem;margin:1.5rem 0;border-radius:.4rem}
-
-    details{background:var(--card);border:1px solid #dbeafe;border-radius:.4rem;margin:1rem 0;overflow:hidden;box-shadow:var(--shadow)}
-    summary{padding:.9rem 1.1rem;cursor:pointer;font-weight:600;color:var(--header)}
-    details[open] summary{border-bottom:1px solid #dbeafe}
-    details div{padding:1rem 1.2rem .9rem}
-
-    .grid{display:grid;gap:1rem}
-    .gallery{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:var(--card);border-radius:.4rem;padding:1rem;box-shadow:var(--shadow)}
-
-    .chart-placeholder{height:320px;background:repeating-linear-gradient(135deg,var(--accent‑light),var(--accent‑light) 10px,var(--accent) 10px,var(--accent) 20px);border-radius:.4rem;display:flex;align-items:center;justify-content:center;color:var(--header);font-weight:700;letter-spacing:.05em}
-
-    footer{background:var(--header);color:var(--text‑light);padding:3rem 1rem 3.5rem;margin-top:4rem;font-size:.95rem;text-align:center}
-    footer a{color:var(--accent‑light)}
-
-    /* ---------- MEDIA ---------- */
-    @media(max-width:640px){h1{font-size:1.9rem}h2{font-size:1.5rem}}
+    :root{--clr-bg:#f8fafc;--clr-text:#0f172a;--clr-header:#1e293b;--clr-surface:#fff;--clr-accent:#0284c7;--clr-accent-light:#bae6fd;--clr-muted:#64748b;--clr-callout:#ecfeff;--clr-shadow:0 4px 16px rgba(15,23,42,.08)}
+    [data-theme="dark"]{--clr-bg:#020617;--clr-text:#e2e8f0;--clr-header:#f1f5f9;--clr-surface:#0f172a;--clr-accent:#38bdf8;--clr-accent-light:#0ea5e9;--clr-muted:#94a3b8;--clr-callout:#082f49;--clr-shadow:0 4px 16px rgba(0,0,0,.4)}
+    *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Inter",system-ui,sans-serif;line-height:1.7;background:var(--clr-bg);color:var(--clr-text);transition:background .3s,color .3s}
+    a{color:var(--clr-accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    h1,h2,h3,h4{color:var(--clr-header);font-weight:700;line-height:1.3}
+    h1{font-size:clamp(1.9rem,3vw,2.8rem)}h2{font-size:clamp(1.4rem,2.5vw,2rem);margin-top:3rem}h3{font-size:1.35rem;margin-top:2rem}h4{font-size:1.15rem;margin-top:1.25rem}
+    header{background:linear-gradient(120deg,var(--clr-accent) 0%,var(--clr-header) 100%);color:#f1f5f9;text-align:center;padding:4rem 1rem 3rem}
+    .container{max-width:1000px;margin:auto;padding:2rem 1.25rem}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,.05)}
+    [data-theme="dark"] nav{background:rgba(2,6,23,.85);border-bottom-color:rgba(255,255,255,.06)}
+    nav ul{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;justify-content:center;padding:.75rem 1rem;list-style:none}
+    nav a{font-weight:600;padding:.25rem .25rem;border-bottom:2px solid transparent;transition:border-color .2s}
+    nav a:hover{border-color:var(--clr-accent-light)}
+    .theme-toggle{position:absolute;right:1rem;top:50%;transform:translateY(-50%);display:flex;gap:.35rem;align-items:center;color:var(--clr-header)}
+    .toggle-input{appearance:none;width:40px;height:22px;border-radius:99px;background:var(--clr-muted);position:relative;outline:none;cursor:pointer}
+    .toggle-input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s}
+    .toggle-input:checked{background:var(--clr-accent)}.toggle-input:checked::after{transform:translateX(18px)}
+    .timeline-container iframe{width:100%;height:min(70vh,650px);border:none;border-radius:.5rem;box-shadow:var(--clr-shadow)}
+    .callout{background:var(--clr-callout);border-left:4px solid var(--clr-accent);padding:1rem 1.25rem;margin:1.75rem 0;border-radius:.5rem}
+    details{background:var(--clr-surface);border:1px solid rgba(100,116,139,.25);border-radius:.45rem;margin:1rem 0;box-shadow:var(--clr-shadow)}
+    summary{padding:.85rem 1rem;cursor:pointer;font-weight:600;position:relative;padding-right:2.5rem}
+    summary::after{content:"▸";position:absolute;right:1rem;transition:transform .25s}
+    details[open] summary::after{transform:rotate(90deg)}details div{padding:1rem 1.25rem 1.25rem}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:1rem}
+    .card{background:var(--clr-surface);border:1px solid rgba(100,116,139,.2);border-radius:.65rem;padding:1.25rem;box-shadow:var(--clr-shadow);transition:transform .2s}
+    .card:hover{transform:translateY(-4px)}
+    footer{background:var(--clr-header);color:#e2e8f0;padding:3rem 1rem;text-align:center;font-size:.95rem;margin-top:5rem}
   </style>
-
-  <!-- 🌙 OPTIONAL DARK‑MODE TOGGLE -->
-  <script>
-    function toggleTheme(){
-      const m=document.documentElement;
-      m.classList.toggle('dark');
-      localStorage.theme=m.classList.contains('dark')?'dark':'light';
-    }
-    (function(){if(localStorage.theme==='dark')document.documentElement.classList.add('dark');})();
-  </script>
 </head>
 <body>
+  <!-- HERO -->
   <header>
     <h1>Trump’s Tariff Policies (2016 – 2025)</h1>
-    <p>Interactive timeline, data visualisations &amp; resources on the modern U.S. tariff era.</p>
-    <button onclick="toggleTheme()" style="margin-top:1rem;padding:.4rem 1rem;border:none;border-radius:.3rem;background:#fff;color:var(--accent‑dark);font-weight:600;cursor:pointer">🌓 Toggle Theme</button>
+    <p>Interactive timeline, economic analysis, and global ripple effects.</p>
   </header>
 
-  <!-- 🔗 Sticky Navigation -->
-  <div id="navWrap">
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#interactive-tl">Timeline</a>
-      <a href="#years">Year‑by‑Year</a>
-      <a href="#viz">Data Viz</a>
-      <a href="#glossary">Glossary</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#resources">Resources</a>
-    </nav>
-  </div>
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#interactive-tl">Timeline</a></li>
+      <li><a href="#years">Chronology</a></li>
+      <li><a href="#measures">2025 Measures</a></li>
+      <li><a href="#impacts">Impacts</a></li>
+      <li><a href="#global">Populism</a></li>
+      <li><a href="#bibliography">Sources</a></li>
+    </ul>
+    <label class="theme-toggle" title="Toggle dark mode">
+      <input type="checkbox" id="toggle-theme" class="toggle-input" />
+      <span class="visually-hidden">Toggle theme</span>
+    </label>
+  </nav>
 
-  <main>
-    <!-- ✨ OVERVIEW -->
+  <main class="container">
+    <!-- OVERVIEW -->
     <section id="overview">
-      <h2>Quick Primer</h2>
-      <p>Tariffs – import taxes – were once a niche policy lever. Between 2018 and 2025 they resurged as a centre‑piece of U.S. economic statecraft. Trump’s first term saw targeted duties on steel, aluminum, and Chinese tech goods; his return in 2025 delivered a sweeping <strong>10 % universal tariff</strong> plus surcharges up to <em>125 %</em> on “worst offenders.”</p>
-      <div class="callout"><strong>Big Stat:</strong> By April 2025, tariffs touched <b>≈71 %</b> of all U.S. goods imports – a reach unseen since 1930.</div>
+      <h2>Why Tariffs?</h2>
+      <p>Tariffs—taxes on imported goods—serve as leverage in trade disputes. President Donald J. Trump revived them as a signature <em>America First</em> tool, arguing they protect U.S. jobs and sovereignty.</p>
+      <div class="callout"><strong>Key metric:</strong> By April 2025, <b>≈ 71 %</b> of U.S. imports face a tariff—the most since 1930.</div>
     </section>
 
-    <!-- ⏳ INTERACTIVE TIMELINE -->
+    <!-- TIMELINE -->
     <section id="interactive-tl" class="timeline-container">
       <h2>Interactive Timeline</h2>
-      <iframe src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vRU3cA3IFEiiL7mcHuNrvSGqVmdTNZ0BO61OPp30teRMWfq0d11c9WAOXzly7IiH7m7uSn4ZV024xaW&amp;font=Default&amp;lang=en&amp;initial_zoom=2&amp;width=100%25&amp;height=650" allowfullscreen></iframe>
+      <iframe loading="lazy" src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vRU3cA3IFEiiL7mcHuNrvSGqVmdTNZ0BO61OPp30teRMWfq0d11c9WAOXzly7IiH7m7uSn4ZV024xaW&font=Default&lang=en&initial_zoom=2" allowfullscreen></iframe>
     </section>
 
-    <!-- 📆 YEAR‑BY‑YEAR ACCORDIONS -->
+    <!-- CHRONOLOGY -->
     <section id="years">
-      <h2>Year‑by‑Year Narrative</h2>
-      <!-- Sample detail; full list omitted for brevity -->
-      <details open><summary>2025 : Tariff Shock 2.0</summary><div><p>Using <em>IEEPA</em> emergency powers, President Trump imposed a universal 10 % tariff, 25 % duties on NAFTA partners (with USMCA carve‑outs), and escalated China surcharges to an effective 125 %. Market turmoil forced partial pauses by May.</p></div></details>
-      <!-- Add 2016‑2024 accordions here (already in previous version) -->
+      <h2>Chronology</h2>
+      <details><summary>2016–2017 : Campaign & Early Actions</summary><div>TPP withdrawal; §232 probes; §301 China IP probe.</div></details>
+      <details><summary>2018 : Trade War Begins</summary><div>Steel/aluminum tariffs; China Lists 1‑3.</div></details>
+      <details><summary>2019 : Escalation & Phase‑One</summary><div>List 3 hike; EU Airbus tariffs; Phase‑One truce.</div></details>
+      <details><summary>2020 : Pandemic & Pause</summary><div>Derivative metals; brief Canada aluminum tariff.</div></details>
+      <details><summary>2021–2023 : Biden Tweaks</summary><div>China duties stay; EV tariff 100 % in 2024.</div></details>
+      <details open><summary>2025 : Universal Tariff Shock</summary><div>IEEPA North America & China; universal 10 %; reciprocal surcharges; U.S.–China truce.</div></details>
     </section>
 
-    <!-- 📈 DATA VISUALISATION -->
-    <section id="viz">
-      <h2>Data Visualisations</h2>
-      <h3>U.S.–China Goods Trade, 2016‑2025</h3>
-      <div class="chart-placeholder">[Chart Placeholder]</div>
-      <p class="card" style="margin-top:1rem">Download the underlying dataset (CSV): <a href="#" download>trade_us_china_2016‑25.csv</a></p>
-
-      <h3>Tariff Coverage Over Time</h3>
-      <div class="chart-placeholder">[Chart Placeholder]</div>
-    </section>
-
-    <!-- 📚 GLOSSARY -->
-    <section id="glossary">
-      <h2>Glossary of Trade Terms</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-        <div class="card"><h4>Section 232</h4><p>U.S. statute allowing tariffs or quotas on imports that threaten national security.</p></div>
-        <div class="card"><h4>Section 301</h4><p>Authorises action against unfair foreign trade practices, incl. IP theft (used heavily vs China).</p></div>
-        <div class="card"><h4>IEEPA</h4><p>International Emergency Economic Powers Act – lets a President regulate commerce in a national emergency.</p></div>
-        <div class="card"><h4>Tariff‑Rate Quota</h4><p>Dual‑level duty: lower rate within a quota volume; higher once exceeded.</p></div>
+    <!-- 2025 MEASURES -->
+    <section id="measures">
+      <h2>Headline Measures (2025)</h2>
+      <div class="cards">
+        <div class="card"><h4>Universal 10 %</h4><p>Applies to ~71 % of import value.</p></div>
+        <div class="card"><h4>Reciprocal Tariffs</h4><p>Up to 125 % on 60 nations; paused for allies.</p></div>
+        <div class="card"><h4>25 % Metals</h4><p>Steel & aluminum worldwide.</p></div>
+        <div class="card"><h4>Autos & Parts</h4><p>25 % duty from April 3.</p></div>
+        <div class="card"><h4>North America 25 %</h4><p>Non‑USMCA goods from Canada/Mexico.</p></div>
       </div>
     </section>
 
-    <!-- 🖼️ IMAGE GALLERY -->
-    <section id="gallery">
-      <h2>Media Gallery</h2>
-      <div class="grid gallery">
-        <div class="card"><img src="https://source.unsplash.com/JmuyB_LibRo/600x400" alt="Container port" /><small>Source: Unsplash</small></div>
-        <div class="card"><img src="https://source.unsplash.com/I2YSmEUAgDY/600x400" alt="Steel coils" /><small>U.S. Steel plant – 2025</small></div>
-        <div class="card"><img src="https://source.unsplash.com/1K8pIbIrhkQ/600x400" alt="Solar panels" /><small>Solar‑panel factory after §201 tariff</small></div>
-        <div class="card"><img src="https://source.unsplash.com/pHANr-CpbYM/600x400" alt="Farm field" /><small>Midwest soy harvest amid trade war</small></div>
-      </div>
+    <!-- IMPACTS -->
+    <section id="impacts">
+      <h2>Economic Impacts</h2>
+      <p>Boston Fed estimates Feb 2025 tariffs add 0.5–0.8 pp to CPI. Yale Budget Lab: full 2025 package +2.3 pp inflation (~US$ 3,800/household). Penn Wharton: long‑run GDP −6 %.</p>
     </section>
 
-    <!-- 🔗 RESOURCES -->
-    <section id="resources">
-      <h2>Further Reading & Datasets</h2>
+    <!-- POPULISM -->
+    <section id="global">
+      <h2>Global Populism</h2>
+      <p>Trump’s tariffs energize economic nationalists yet strain allies. EU weighs retaliation; China accelerates self‑reliance.</p>
+    </section>
+
+    <!-- SOURCES -->
+    <section id="bibliography">
+      <h2>Selected Sources</h2>
       <ul>
-        <li><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank">Tax Foundation – Trump Tariffs Tracker</a></li>
-        <li><a href="https://budgetmodel.wharton.upenn.edu/issues/2025/4/10/economic-effects-of-president-trumps-tariffs" target="_blank">Penn Wharton Budget Model – Economic Impact</a></li>
-        <li><a href="https://www.bls.gov/" target="_blank">BLS Producer Price Index Data</a></li>
-        <li><a href="https://www.wto.org/" target="_blank">WTO Tariff Analysis Online</a></li>
+        <li><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank">Tax Foundation</a></li>
+        <li><a href="https://budgetlab.yale.edu/research/where-we-stand-fiscal-economic-and-distributional-effects-all-us-tariffs-enacted-2025-through-april" target="_blank">Yale Budget Lab (2025)</a></li>
       </ul>
     </section>
   </main>
 
-  <!-- 🦶 FOOTER -->
+  <!-- FOOTER -->
   <footer>
-    <h2>About This Project</h2>
-    <p>Created by Robbie He Anyi for a 2025 senior project exploring the intersection of tariffs and global right‑wing populism.  Code on <a href="https://github.com/puffyfishcouldnotswim/senior-project" target="_blank">GitHub</a>.</p>
-    <p>© 2025 Robbie He Anyi · Licensed MIT</p>
+    <h2>About This Site</h2>
+    <p>Created for a senior project by Robbie He Anyi • MIT License.</p>
   </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const checkbox=document.getElementById('toggle-theme');
+      const root=document.documentElement;
+      if(checkbox){
+        checkbox.addEventListener('change',()=>{
+          root.dataset.theme=checkbox.checked?'dark':'light';
+          localStorage.setItem('pref-theme',root.dataset.theme);
+        });
+        const pref=localStorage.getItem('pref-theme');
+        if(pref){root.dataset.theme=pref;checkbox.checked=pref==='dark'}
+      }
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
+      },{threshold:0.2});
+      document.querySelectorAll('section').forEach(el=>{el.classList.add('reveal');observer.observe(el)});
+    });
+  </script>
 </body>
 </html>
